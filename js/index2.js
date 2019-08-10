@@ -209,6 +209,7 @@ function createObject(classDef){
     return new classDef();
 }
 
+
 let obj = createObject(class {
     sayHi(){
         console.log("Hi!"); //Hi!
@@ -230,4 +231,6 @@ let person = new class {
 }("Alex");
 
 person.sayName(); 
+
+//git check
 
