@@ -234,3 +234,87 @@ person.sayName();
 
 //git check
 
+// Методи генератори
+
+class MyClass {
+    *createIterator(){
+        yield 1;
+        yield 2;
+        yield 3;
+    }
+}
+
+let instance = new MyClass();
+let iterator = instance.createIterator();
+
+class Collection {
+    constructor(){
+        this.items = [];
+    }
+    *[Symbol.iterator]() {
+        yield *this.items.values();
+    }
+}
+
+var collection = new Collection();
+collection.items.push(1);
+collection.items.push(2);
+collection.items.push(3);
+
+for (let x of collection){
+    console.log(x);
+}
+// 1
+// 2
+// 3
+
+function Rectangle(length, width){
+    this.length = length;
+    this.width = width;
+}
+
+Rectangle.prototype.getArea = function(){
+    return this.length * this.width;
+};
+
+function Square(length){
+    Rectangle.call(this, length, length)
+}
+
+Square.prototype = Object.create(Rectangle.prototype, {
+    constructor: {
+        value: Square,
+        enumerable: true,
+        writable: true,
+        configurable: true
+    }
+});
+
+var square = new Square(3);
+
+console.log(square.getArea());              // 9
+console.log(square instanceof Square);      // true
+console.log(square instanceof Rectangle);   // true
+
+class Rectangle {
+    constructor(length, width){
+        this.length = length;
+        this.width = width;
+    }
+
+    getArea() {
+        return this.length * this.width;
+    }
+}
+
+class Square extends Rectangle {
+    constructor(length){
+        super(length, length);
+    }
+}
+
+var square = new Square(3);
+
+console.log(square.getArea());              // 9
+console.log(square instanceof Square);      // true
+console.log(square instanceof Rectangle);   // true
