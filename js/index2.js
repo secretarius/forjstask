@@ -318,3 +318,29 @@ var square = new Square(3);
 console.log(square.getArea());              // 9
 console.log(square instanceof Square);      // true
 console.log(square instanceof Rectangle);   // true
+
+
+// Метод Array.of() создаёт новый экземпляр массива Array из 
+// произвольного числа аргументов, вне зависимости от числа или типа аргумента.
+let arrOf = Array.of(7);
+console.log(arrOf); //[7]
+
+let arr = new Array(7);
+console.log(arr); // [ empty × 7 ]
+
+//Метод Array.from() создаёт новый экземпляр Array из массивоподобного или итерируемого объекта.
+let arrFrom = Array.from('foo')
+console.log(arrFrom); // expected output: Array ["f", "o", "o"]
+
+let arrFrom2 = Array.from([1, 2, 3], x => x + x);
+console.log(arrFrom2); // expected output: Array [2, 4, 6]
+
+function giveMeFive(obj){
+    var five=[];
+    for (var key in obj) {
+      if (key.length==5) five.push(key);
+      if (obj[key].length==5) five.push(obj[key]);
+    }
+    return five;
+  }
+  console.log(giveMeFive({Our:"earth",is:"a",beautyful:"world"}))
