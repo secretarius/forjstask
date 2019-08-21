@@ -1,0 +1,93 @@
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {fromEvent, interval, noop, observable, Observer, Observable, throwError, range, of, from, timer, combineLatest, zip, forkJoin} from 'rxjs';
+import {mapTo, race, merge, skip,concat, throttle, throttleTime, delayWhen, filter, map, take, timeout, subscribeOn, debounce, debounceTime, distinctUntilChanged, startWith, withLatestFrom, pairwise} from 'rxjs/operators';
+import {createHttpObservable} from '../common/util';
+
+
+@Component({
+  selector: "about",
+  templateUrl: "./about.component.html",
+  styleUrls: ["./about.component.css"]
+})
+export class AboutComponent implements OnInit {
+  
+  ngOnInit() {
+
+    // const http$ = createHttpObservable('/api/courses');
+
+    // const sub = http$.subscribe(console.log);
+
+    // setTimeout(() => sub.unsubscribe(), 0);
+  }
+}
+ 
+// const o = Observable.create((observer: Observer<string>) => {
+//   observer.next('Hello!');
+//   observer.next('Hello!');
+//   observer.next('Hello!');
+//   setInterval(_ => {
+//     observer.next('Babo!');
+//   }, 1000);
+//   setTimeout(_ => {
+//     observer.complete();
+//   }, 10000);
+//   // observer.complete();
+// });
+
+// const o = of(5, 78, 99, 7, 6);
+// const o = from([5, 78, 99, 7, 6]);
+// const o = fromEvent(document.body, 'mousemove');
+// const o = throwError('My strong ERROR');
+
+// const o = range(0, 100).pipe(filter(number => number>50))
+// const o = range(0, 100).pipe(debounceTime(1000)) 
+
+// const o = from([1, 1, 1, 1, 2, 2, 2, 3]).pipe(distinctUntilChanged()) //только уникальние значения
+
+// const o = timer(0, 200).pipe(throttleTime(1000)) //берет а потом пропускаєт значения
+//const o = range(0, 100).pipe(skip(10)) //пропстит 10 елементов
+
+// const o = range(0, 100).pipe(take(10)) //возмет 10 елементов
+
+// const timerOne = timer(1000, 4000).pipe(take(3));
+// const timerTwo = timer(2000, 4000).pipe(take(3));
+// const timerThree = timer(3000, 4000).pipe(take(3));
+
+// const o = forkJoin(timerOne, timerTwo, timerThree); // когда все последовательности завершени тогда
+//                                                     // он вистреливает последние значения 
+const o1 = timer(10, 1000).pipe(take(3), mapTo('first'));
+const o2 = timer(0, 100).pipe(take(3), mapTo('second')); 
+
+// const o = o1.pipe(concat(o2)); //сначала вивелся первий потом второй не зависимо что второй 
+                              // генерировал значения намного бистрее
+// const o = o1.pipe(startWith(5)); //стартуєт с места которое ми задали
+// const o = o1.pipe(withLatestFrom(o2)); // сгрупированое значение относительно времени
+// const o = o1.pipe(pairwise()); // групирует соседние елементи послкдовательности
+
+const o = o1.pipe(race(o2)); // вистреливает победителя
+
+o.subscribe({
+  next: (value: any) => console.log('Next:', value),
+  complete: () => console.log('Complete!'),
+  error: (error) => console.log('Error:', error),
+});
+
+
+// var input1 = document.querySelector('#input1');
+// var input2 = document.querySelector('#input2');
+
+// var span = document.querySelector('span');
+
+// var obs1 = Rx.Observable.fromEvent(input1, 'input');
+// var obs2 = Rx.Observable.fromEvent(input2, 'input');
+
+// obs1.mergeMap(
+// 	event1 => {
+//   	return obs2.map(
+//     event2 => event1.target.value + ' ' + 
+// event2.target.value
+//     )
+//  }
+// ).subscribe(
+// 	combineValue => span.textContent = combineValue
+// );
