@@ -80,3 +80,4 @@ for(let n of fib) {
     console.log(n);
     if(++i > 9) break;
 }
+
