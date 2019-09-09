@@ -13,7 +13,7 @@
 // state = updateState(state, "Incriment")
 // console.log(state);
 
-let state = 0;
+// let state = 0;
 
 function updateState(state, action) {
   if (action.type === "Incriment") {
@@ -25,14 +25,31 @@ function updateState(state, action) {
   }
 }
 
+class Store {
+    constructor(updateState, state){
+        this._updateState = updateState;
+        this._state = state; 
+    }
+
+    get state(){
+        return this._state;
+    }
+
+    update(action){
+        this._state = this._updateState(this._state, action);
+    }
+}
+
+const store = new Store(updateState, 0); 
+
 const inc = { type: "Incriment", amount: 5 };
 const dec = { type: "Decriment", amount: 3 };
 
-state = updateState(state, inc);
-console.log(state);
+store.update(inc);
+console.log(store.state);
 
-state = updateState(state, dec);
-console.log(state);
+store.update(dec);
+console.log(store.state);
 
-state = updateState(state, {});
-console.log(state);
+store.update({});
+console.log(store.state);
