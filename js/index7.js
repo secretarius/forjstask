@@ -71,3 +71,19 @@ function setDefaultVaue(Id) {
 let isActiveId = 1;
 setDefaultVaue(isActiveId);
 console.log(response);
+
+array = response.map(function(item, idx){
+    return {
+        name: item.name,
+        email: item.email
+    };
+})
+
+console.log(array);
+
+array = response.filter(function(person) {
+    if(!person.isActive){
+        return true
+    };
+});
+console.log(array);
