@@ -31,3 +31,55 @@ console.log('Yes is', yes);
 console.log('No is', no);
 console.log('o_O');
 
+//Деструктивное присваивание обектов
+let person = {
+    firstname: 'John',
+    lastname: 'Doe'
+};
+
+let {firstname, lastname} = person;
+console.log(firstname, lastname);
+
+// let {firstname: first, lastname: last} = person;
+
+let {firstname: first, lastname: last} = {firstname: 'John', lastname: 'Doe'};
+
+console.log(first, last);
+
+// let {firstname, lastname} = {firstname: 'John', lastname: 'Doe'};
+// console.log(firstname, lastname);
+
+let user = {
+    firstname: 'John',
+    lastname: 'Doe',
+    social: {
+        facebook: 'johndoe',
+        twitter: 'jdoe'
+    }
+};
+
+let {firstname: first, lastname: last, social: {facebook}, age = 25} = user;
+console.log(first, last, facebook, age);
+
+
+function post(url, {data: { firstname, lastname}, cache}) {
+    console.log(firstname, lastname, cache);
+}
+
+let result = post('api/users', {data: user, cache: false }); 
+
+
+/// 
+function getUserInfo() {
+    return {
+            firstname: 'John',
+            lastname: 'Doe',
+            social: {
+                facebook: 'johndoe',
+                twitter: 'jdoe'
+    }
+};
+}
+
+let { firstname, lastname, social: {twitter} } = getUserInfo();
+console.log(firstname, lastname, twitter);
