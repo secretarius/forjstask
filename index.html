@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>For JS task</title>
+    <link rel="stylesheet" href="css/index.css">
+   
 </head>
 <body>
-    <!-- <script src="js/index.js"></script> -->
-    <script src="js/objects.js"></script>
-    <p>training JS</p>
+    <header>
+        <h1>Простая HTML-страница</h1>
+    </header>
+    <div id="content">
+        <p>Это <i>простой</i> HTML-файл.</p>
+        <div class="callout">
+            <p>Он позволяет творить удивительние вещи</p>
+        </div>
+        <p>Идентификатори елементов (например, <span class="code">#content</span> являются уникальними (они должни использоватя на странице только один раз).</p>
+        <p>Имена классов (например, <span class="code">.callout</span> могут использоватя во многих елементах).</p>
+        <div id="callout2" class="callout fancy">
+            <p>Одному HTML-елементу можно присвоить несколько классов.</p>
+        </div>
+    </div>
+    <script src="js/exampleDOM.js"></script>
 </body>
 </html>
