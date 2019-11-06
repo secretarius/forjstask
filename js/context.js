@@ -87,7 +87,7 @@ var promoteYanaToSenior = promote.bind(employee3, "Senior developer");
 console.log(promoteYanaToSenior(1500));
 
 
-//////////////////////////////// bind
+// bind
 function f(y) {
     return this.x + y;
 }
@@ -99,14 +99,17 @@ var o = {
 // var g = f.bind(o);
 // console.log(g(2));
 
-function isBind (f, o) {
+function bind (f, o) {
     return function() {
         return f.apply(o, arguments);
         }
     }
 
-var g = isBind(f, o);
+var g = bind(f, o);
 console.log(g(10));
+
+
+
 ////////////////////////////////////////////
 const one = function(){
 
@@ -173,3 +176,35 @@ console.log(getX());
 
 var boundGetX = getX.bind(module);
 console.log(boundGetX()); 
+
+//forEach
+////////
+var each = function(arr, callback, thisArg) {
+    // var i;
+    // var length = arr.length;
+    for(var i = 0; i < arr.length; i++) {
+        callback.call(thisArg, arr[i], i , arr);
+    }
+}
+
+var Person = function(name) {
+    this.name = name;
+  };
+  
+  Person.prototype.say = function(phrase) {
+    console.log(this.name + ' says ' + phrase);
+  }
+  
+  Person.prototype.mumble = function(phrases) {
+    phrases.forEach(function(phrase) {
+      this.say(phrase);
+    }, this);
+  }
+  
+  var johnDoe = new Person('John Doe');
+  johnDoe.mumble(['Hello, World!', 'JS is great', 'I\'m designer and i don\'t have job']);
+
+
+
+  each([1,2,3,4,5], (num, i , arr) => {console.log(num, i, arr);});
+
