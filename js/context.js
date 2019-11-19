@@ -140,11 +140,11 @@ const one = function(){
     
     const b = bind(a, {foo: 'var' });
     
-    const c = bind(b, null);
+    const c1 = bind(b, null);
     
-    const d = bind(c, { g: '1' });
+    const d = bind(c1, { g: '1' });
     
-    console.log(c())
+    console.log(c1())
 
     /////////////////////
 var context = { 
