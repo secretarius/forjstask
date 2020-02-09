@@ -57,3 +57,15 @@ parent();
 //   secoundChild();
 //   secoundChild();
 //   secoundChild();
+
+
+let input = [80, 90, 100];
+// let average = (arr) => devide(sum(arr), size(arr));
+// average(input);
+
+let sum = (total, current) => total + current;
+let total = arr => arr.reduce(sum);
+let size = arr => arr.length;
+let devide = (a, b) => a/b;
+let average = arr => devide(total(arr), size(arr));
+console.log(average(input));
