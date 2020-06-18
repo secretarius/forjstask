@@ -55,42 +55,77 @@ var result = nums.map(Math.pow);
 console.log(result);
 
 //=============================================
-var PersonForMap = function(name) {
-  this.name = name; 
+var PersonForMap = function (name) {
+  this.name = name;
   this.phrases = null;
 };
 
-PersonForMap.prototype.sayhello = function(phrase) {
+PersonForMap.prototype.sayhello = function (phrase) {
   return this.name + " sayshello " + phrase;
-}
+};
 
-PersonForMap.prototype.grabPhrases = function(phrases) {
-  this.phrases = phrases.map(function(phrase) {
+PersonForMap.prototype.grabPhrases = function (phrases) {
+  this.phrases = phrases.map(function (phrase) {
     return this.sayhello(phrase);
-  }, this)
-}
+  }, this);
+};
 
-var jhon = new PersonForMap('Jhon');
-jhon.grabPhrases(['Hello, World!', 'JS is great', 'I\'m designer and i don\'t have job']);
+var jhon = new PersonForMap("Jhon");
+jhon.grabPhrases([
+  "Hello, World!",
+  "JS is great",
+  "I'm designer and i don't have job",
+]);
 console.log(jhon.phrases);
 
+var slice = function (str) {
+  return str.slice(0, 5);
+};
 
-
-var slice = function(str) {
-    return str.slice(0, 5);
-}
-
-var frameworks = ['Knockout', 'Backbone', 'Angular'].map(slice);
+var frameworks = ["Knockout", "Backbone", "Angular"].map(slice);
 console.log(frameworks);
 
 //map hand
-var map = function(arrAY, callback, thisArguments) {
-    var res = [];
-    for(var i = 0; i < arrAY.length; i++) {
-        res.push(callback.call(thisArguments, arrAY[i], i, arrAY));
-    }
-    return res;
+var map = function (arrAY, callback, thisArguments) {
+  var res = [];
+  for (var i = 0; i < arrAY.length; i++) {
+    res.push(callback.call(thisArguments, arrAY[i], i, arrAY));
+  }
+  return res;
 };
 
 var pows = map([10, 20, 30], Math.pow);
 console.log(pows); // [1,20,900]
+
+//==================================================================================
+
+//filter by hand
+
+var filter = function (arrrayA, callback, thisArgu) {
+  var resultat = [];
+  for (var i = 0; i < arrrayA.length; i++) {
+    if (callback.call(thisArgu, arrrayA[i], i, arrrayA)) {
+      resultat.push(arrrayA[i]);
+    }
+  }
+  return resultat;
+};
+
+var strs = ["Hello", ",", "JavaScript", "World", "!"];
+
+var data = filter(strs, function (str) {
+  return str.toLowerCase() !== str;
+});
+
+console.log(data);
+
+var nums = [1, 20, 4, 2, 5, 3, 24, 6, 45];
+
+var getNum = filter(nums, function (num) {
+  return num > 5;
+});
+
+console.log(getNum);
+
+// var sum = nums.reduce((total, amount) => total + amount, 1000); 
+// console.log(sum);
