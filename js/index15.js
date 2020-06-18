@@ -165,3 +165,64 @@ each([1,2,3], function(num, i, nums) {
 })
 
 [1, 2, 3, 4, 5].forEach(num => console.log(num * 2)); // 2 4 6 8 10
+
+
+class Person {
+  greeting() {
+    console.log("Hello!");
+  }
+  ting(r) {
+    console.log(r);
+  }
+}
+
+class Acquaintance extends Person {
+  canSayHello() {}
+}
+
+class Stranger extends Person {
+  canSayHello() {}
+}
+
+function sayHello(p) {
+  p.greeting();
+  p.ting("na");
+}
+
+sayHello(new Acquaintance());
+sayHello(new Stranger());
+
+
+
+//======================================================
+class Animals {
+  getSound() {
+    console.log("Rhor!");
+  }
+}
+
+class Cat extends Animals {
+  name
+  getSound() {
+    super.getSound();
+    console.log("Meo!");
+  }
+}
+
+class Dog extends Animals {
+  name
+}
+
+var tom = new Cat();
+tom.name = 'Tom'
+
+var spike = new Dog();
+spike.name = 'Spike'
+
+function getSomthing(a) {
+  //console.log(animal.name);
+  a.getSound();
+}
+
+getSomthing(new Cat());
+getSomthing(spike);
