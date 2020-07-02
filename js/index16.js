@@ -127,5 +127,73 @@ var getNum = filter(nums, function (num) {
 
 console.log(getNum);
 
-// var sum = nums.reduce((total, amount) => total + amount, 1000); 
+// var sum = nums.reduce((total, amount) => total + amount, 1000);
 // console.log(sum);
+
+//some example
+
+let custumers = data.filter(function (custumer) {
+  return custumer.purchases.some(function (purchase) {
+    return (
+      purchase === "iPhone" || purchase === "Macbook" || purchase === "iMac"
+    );
+  });
+});
+console.log(customers);
+// [{"name":"Wanda","email":"wjenkins0@irs.gov","purchases":["iPhone","dishwasher","cucumbers"]},
+// {"name":"Paula","email":"pstephens2@boston.com","purchases":["apples","Macbook","iPhone"]},
+// {"name":"Steven","email":"sgonzales5@mashable.com","purchases":["iMac","Android phone","Windows 10"]},
+// {"name":"Lisa","email":"lgreene8@spotify.com","purchases":["pork","iMac","cheese"]}]
+
+//some by hand
+
+let some = function (array, callbacks, thisArgumentss) {
+  for (let i = 0; i < array.length; i++) {
+    if (callbacks.call(thisArgumentss, array[i], i, array)) {
+      return true;
+    }
+  }
+  return false;
+};
+
+const nums = [10, 20, 30, 40, 50];
+
+let someTrue = some(nums, function (num) {
+  return num < 30;
+});
+
+console.log(someTrue);
+
+///////////////
+var arr = [1, 2, 3, 4, 5];
+
+var o = {
+  checkNumber: function (curNum) {
+    return curNum == 3;
+  },
+};
+
+let someAr = arr.some(function (curN) {
+  return this.checkNumber(curN);
+}, o);
+
+console.log(someAr);
+
+/// every by hand
+
+let every = function (ar, callb, thisAr) {
+  for (let i = 0; i < ar.length; i++) {
+    if (!callb.call(thisAr, ar[i], i, ar)) {
+      return false;
+    }
+  }
+  return true;
+};
+
+const nums = [30, 30, 30, 30, 30];
+
+let someEvery = every(nums, function (ever) {
+  return ever === 30;
+});
+
+console.log(someEvery);
