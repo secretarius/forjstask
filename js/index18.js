@@ -62,3 +62,21 @@ function getSum( a,b )
   }
 
   console.log(alphabetPosition("The sunset sets at twelve o' clock "));
+
+//////////////////////////////////////
+let friend = (fr) => {
+
+  return fr.filter( (frie) => frie.length == 4)
+
+
+  // let friendsList = [];
+
+  // for(let i of fr) {
+  //   if(i.length == 4) {
+  //     friendsList.push(i);
+  //   }
+  // }
+  // return friendsList
+}
+
+console.log(friend(["Rayan", "Sem", "Jhon", "Cassy", "Jery"]));
