@@ -91,3 +91,12 @@ let obj = {
 
 let arr = Object.keys(obj).map((key) => obj[key]);
 console.log(arr);
+
+////////////////////////////////////////////////
+function reverseWords(str) {
+  return str.split(' ').map((el) => [...el].reverse().join('')).join(' ')
+
+  }
+  
+
+console.log(reverseWords("This is an example!"));
