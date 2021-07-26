@@ -80,3 +80,14 @@ let friend = (fr) => {
 }
 
 console.log(friend(["Rayan", "Sem", "Jhon", "Cassy", "Jery"]));
+
+///////////////////////////////////
+
+let obj = {
+  a: "Hello",
+  b: " this is",
+  c: "javascript!"
+}
+
+let arr = Object.keys(obj).map((key) => obj[key]);
+console.log(arr);
