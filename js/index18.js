@@ -98,5 +98,12 @@ function reverseWords(str) {
 
   }
   
-
 console.log(reverseWords("This is an example!"));
+//////////////////////////////////////////////
+
+function squareDigits(num) {
+  return +(num.toString().split('').map((n) => n * n).join(''))
+}
+
+console.log(squareDigits(9119));
+console.log(squareDigits(3212));
